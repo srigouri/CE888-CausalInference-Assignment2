@@ -20,8 +20,8 @@ def get_ps_weights(clf, x, t):
 
 """ Function to compute Confidence Intervals"""
 def mean_ci(data, ci=0.95):
-  l_mean = np.mean(data)
-  lower, upper = st.t.interval(ci, len(data)-1, loc=l_mean, scale=st.sem(data))
+    l_mean = np.mean(data)
+    lower, upper = st.t.interval(ci, len(data)-1, loc=l_mean, scale=st.sem(data))
   return l_mean, lower, upper
 
 """ Function to compute Precision in Estimating the Heterogeneous Treatment Effect(PEHE) with parameters, 
