@@ -12,46 +12,46 @@ import numpy as np
 import scipy.stats as st
 
 
-""" Function to compute weights given x and t values:"""
-def get_ps_weights(clf, x, t):
+""" Function to compute weights given X(input features) and t values:"""
+def get_ps_weights(classifier, X, t):
   ti = np.squeeze(t)
-  clf.fit(x, ti)
-  ptx = clf.predict_proba(x).T[1].T + 0.0001 # add a small value to avoid dividing by 0
-  wi =(ti/ptx)+((1-ti)/(1-ptx)) 
-  return wi
+  classifier.fit(X, ti)
+  ptx = classifier.predict_proba(X).T[1].T + 0.0001 (#adding a small value to avoid dividing by 0.Ref:CE-888 Lab4 code)
+  weight_i =(ti/ptx)+((1-ti)/(1-ptx)) 
+  return weight_i
 
 """ Function to compute Confidence Intervals"""
 def mean_ci(data, ci=0.95):
-   l_mean = np.mean(data)
-   lower, upper = st.t.interval(ci, len(data)-1, loc=l_mean, scale=st.sem(data))
-  return l_mean, lower, upper
+  l_mean = np.mean(data)
+  lower_ci, upper_ci = st.t.interval(ci, len(data)-1, loc=l_mean, scale=st.sem(data))
+  return l_mean, lower_ci, upper_ci
 
 """ Function to compute Precision in Estimating the Heterogeneous Treatment Effect(PEHE) with parameters, 
-true treatment effect value(effect_true) and predicted treatment effect value(effect_pred)."""
-def pehe(effect_true, effect_pred):
-    return np.sqrt(np.mean((effect_true-effect_pred)**2))
+true treatment effect value(eff_true) and predicted treatment effect value(eff_pred)."""
+def pehe(eff_true, eff_pred):
+    return np.sqrt(np.mean((eff_true-eff_pred)**2))
 
-""" Function to compute Absolute error for Average Treatment Effect(ATE) with parameters, true treatment effect value(effect_true) 
-and predicted treatment effect value(effect_pred)."""
-def abs_ate(effect_true, effect_pred):
-    return np.abs(np.mean(effect_pred)-np.mean(effect_true))
+""" Function to compute Absolute error for Average Treatment Effect(ATE) with parameters, true treatment effect value(eff_true) 
+and predicted treatment effect value(eff_pred)."""
+def abs_ate(eff_true, eff_pred):
+    return np.abs(np.mean(eff_pred)-np.mean(eff_true))
 
 """Function to compute Absolute error for the Average Treatment Effect on the Treated with parameters ,
-predicted treatment effect value(effect_pred),factual outcome(yf),Treatment status(treated/control) as t, whether belongs to experimental group(e)."""
-def abs_att(effect_pred, yf, t, e):
+predicted treatment effect value(eff_pred),factual outcome(yf),Treatment status(treated/control) as t, whether belongs to experimental group(e)."""
+def abs_att(eff_pred, yf, t, e):
     att_true = np.mean(yf[t > 0]) - np.mean(yf[(1 - t + e) > 1])
-    att_pred = np.mean(effect_pred[(t + e) > 1])
+    att_pred = np.mean(eff_pred[(t + e) > 1])
     return np.abs(att_pred - att_true)
 
-""" Function to compute the risk of the policy defined by predicted effect with parameters ,predicted treatment effect value(effect_pred),
+""" Function to compute the risk of the policy defined by predicted effect with parameters ,predicted treatment effect value(eff_pred),
 factual outcome(yf),Treatment status(treated/control) as t, whether belongs to experimental group.only the cases for which we have experimental data (i.e., e > 0)"""
-def policy_risk(effect_pred, yf, t, e):
+def policy_risk(eff_pred, yf, t, e):
     
     t_e = t[e > 0]
     yf_e = yf[e > 0]
-    effect_pred_e = effect_pred[e > 0]
+    eff_pred_e = effect_pred[e > 0]
 
-    if np.any(np.isnan(effect_pred_e)):
+    if np.any(np.isnan(eff_pred_e)):
         return np.nan
 
     policy = effect_pred_e > 0.0
