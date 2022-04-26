@@ -20,8 +20,8 @@ def get_ps_weights(clf, x, t):
 
 """ Function to compute Confidence Intervals"""
 def mean_ci(data, ci=0.95):
-    l_mean = np.mean(data)
-    lower, upper = st.t.interval(ci, len(data)-1, loc=l_mean, scale=st.sem(data))
+   l_mean = np.mean(data)
+   lower, upper = st.t.interval(ci, len(data)-1, loc=l_mean, scale=st.sem(data))
   return l_mean, lower, upper
 
 """ Function to compute Precision in Estimating the Heterogeneous Treatment Effect(PEHE) with parameters, 
@@ -36,9 +36,9 @@ def abs_ate(effect_true, effect_pred):
 
 """Function to compute Absolute error for the Average Treatment Effect on the Treated with parameters ,
 predicted treatment effect value(effect_pred),factual outcome(yf),Treatment status(treated/control) as t, whether belongs to experimental group(e)."""
-    def abs_att(effect_pred, yf, t, e):
-        att_true = np.mean(yf[t > 0]) - np.mean(yf[(1 - t + e) > 1])
-        att_pred = np.mean(effect_pred[(t + e) > 1])
+def abs_att(effect_pred, yf, t, e):
+    att_true = np.mean(yf[t > 0]) - np.mean(yf[(1 - t + e) > 1])
+    att_pred = np.mean(effect_pred[(t + e) > 1])
     return np.abs(att_pred - att_true)
 
 """ Function to compute the risk of the policy defined by predicted effect with parameters ,predicted treatment effect value(effect_pred),
