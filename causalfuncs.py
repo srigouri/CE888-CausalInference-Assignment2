@@ -40,10 +40,9 @@ predicted treatment effect value(effect_pred),factual outcome(yf),Treatment stat
     return np.abs(att_pred - att_true)
 
 """ Function to compute the risk of the policy defined by predicted effect with parameters ,predicted treatment effect value(effect_pred),
-factual outcome(yf),Treatment status(treated/control) as t, whether belongs to experimental group."""
+factual outcome(yf),Treatment status(treated/control) as t, whether belongs to experimental group.only the cases for which we have experimental data (i.e., e > 0)"""
 def policy_risk(effect_pred, yf, t, e):
     
-    # Consider only the cases for which we have experimental data (i.e., e > 0)
     t_e = t[e > 0]
     yf_e = yf[e > 0]
     effect_pred_e = effect_pred[e > 0]
