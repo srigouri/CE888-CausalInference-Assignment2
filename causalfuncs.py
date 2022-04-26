@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1-4vBaDnLwSHcT3KHokGiGLxj8jJ1tg4B
 """
 import numpy as np
+import scipy.stats as st
+
 
 """ Function to compute weights given x and t values:"""
 def get_ps_weights(clf, x, t):
