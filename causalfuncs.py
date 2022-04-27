@@ -49,12 +49,12 @@ def policy_risk(eff_pred, yf, t, e):
     
     t_e = t[e > 0]
     yf_e = yf[e > 0]
-    eff_pred_e = effect_pred[e > 0]
+    eff_pred_e = eff_pred[e > 0]
 
     if np.any(np.isnan(eff_pred_e)):
         return np.nan
 
-    policy = effect_pred_e > 0.0
+    policy = eff_pred_e > 0.0
     treat_overlap = (policy == t_e) * (t_e > 0)
     control_overlap = (policy == t_e) * (t_e < 1)
 
