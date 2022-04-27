@@ -2,6 +2,7 @@
 # Causal Inference on IHDP and Jobs datasets.
 
 This repository holds  3 files containing python code for Causal Inference model on two different datasets(IHDP data & JOBS data).
+Note:IHDP_Causal.ipynb & ihdp_causal.py(1) ,JOBS_Causal.ipynb & jobs_causal(1).py are same.Can use either one according to convenience.
 
 1.Causal Effect on IHDP data - IHDP_causal.py: 
 
