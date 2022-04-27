@@ -40,9 +40,9 @@ This file contains functions to compute evaluation metrics.
 This file has to be uploaded in the same directory to execute IHDP_Causal.py and JOBS_Causal.py
 
 
-References:
+#References:
 
 - CE-888 Lab4 Causal Inference on sodium and Toys dataset.
 - Functions to evaluate metrics: https://github.com/dmachlanski/CE888_2022/blob/main/project/metrics.py
 
-Source for data: : https://github.com/dmachlanski/CE888_2022/tree/main/project/data (moodle)
+#Source for data : https://github.com/dmachlanski/CE888_2022/tree/main/project/data (moodle)
