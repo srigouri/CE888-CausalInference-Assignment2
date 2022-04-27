@@ -29,7 +29,15 @@ This repository holds  3 files containing python code for Causal Inference model
 
 3.causalfuncs.py:
 
-This file contains functions to compute evaluation metrics. Absolute Treatment Effect(ATE) ,Precision in Estimating the Heterogeneous Treatment Effect(PEHE),Absolute error for the Average Treatment Effect on the Treated,risk of the policy defined by predicted effect, computing weights using classifier and propensity scores and function to compute confidence intervals.This file has to be uploaded in the same directory to execute IHDP_Causal.py and JOBS_Causal.py
+This file contains functions to compute evaluation metrics. 
+- Absolute Treatment Effect(ATE) 
+- Precision in Estimating the Heterogeneous Treatment Effect(PEHE)
+- Absolute error for the Average Treatment Effect on the Treated
+- risk of the policy defined by predicted effect
+- computing weights using classifier and propensity scores
+- function to compute confidence intervals.
+
+This file has to be uploaded in the same directory to execute IHDP_Causal.py and JOBS_Causal.py
 
 
 References:
