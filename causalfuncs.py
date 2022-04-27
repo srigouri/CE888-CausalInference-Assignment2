@@ -16,7 +16,7 @@ import scipy.stats as st
 def get_ps_weights(classifier, X, t):
   ti = np.squeeze(t)
   classifier.fit(X, ti)
-  ptx = classifier.predict_proba(X).T[1].T + 0.0001 (#adding a small value to avoid dividing by 0.Ref:CE-888 Lab4 code)
+  ptx = classifier.predict_proba(X).T[1].T + 0.0001  #(adding a small value to avoid dividing by 0.Ref:CE-888 Lab4 code)
   weight_i =(ti/ptx)+((1-ti)/(1-ptx)) 
   return weight_i
 
